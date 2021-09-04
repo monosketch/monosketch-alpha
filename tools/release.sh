@@ -6,14 +6,14 @@ git config user.name "Tuan Chau"
 hash=$(git rev-parse --short HEAD)
 dest="v1-$hash"
 
-find . -name MonoSketch.js | xargs git rm --cached
-find . -name MonoSketch.js.map | xargs git rm --cached
-find . -name main.css | xargs git rm --cached
+rm */app.js
+rm */app.js.map
+rm */app.css
 
 mkdir $dest
-mv $src/main.css ./$dest/
-mv $src/MonoSketch.js ./$dest/
-mv $src/MonoSketch.js.map ./$dest/
+mv $src/main.css ./$dest/app.css
+mv $src/MonoSketch.js ./$dest/app.js
+mv $src/MonoSketch.js.map ./$dest/app.js.map
 
 sed -e  "s/scriptdir/$dest/g" template_index.html > index.html
 
